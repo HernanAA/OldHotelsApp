@@ -1,0 +1,86 @@
+import React, { Component } from 'react'
+import Styles from '../../styles'
+import { View, Image, Text } from 'react-native'
+import Utils from '../../helpers/utils';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const HotelsViewItem = ({ item }) => {
+    var stars = [];
+    for (var i = 0; i < item.stars; i++) {
+        stars.push(<Icon
+            key={i} name='star'
+            size={12}
+            color={Styles.colors.yellow}
+            style={{ paddingRight: 4 }}
+        />);
+    }
+
+    return (
+        <View key={item._id} style={styles.container}>
+            <Image source={{ uri: item.images[0] }} style={styles.image} />
+            <View style={styles.bottomContainer}>
+                <View style={styles.line}>
+                    <Text style={styles.hotelName}>{item.name} </Text>
+                    <Text style={styles.priceText}>Precio Por Noche</Text>
+                </View>
+                <View style={styles.line}>
+                    <View style={styles.stars}>
+                        {stars}
+                    </View>
+                    <Text style={styles.priceValue}>ARS {item.price.thousandDot()}</Text>
+                </View >
+            </View>
+        </View >
+    )
+}
+
+const styles = {
+    container: {
+        height: 240,
+        marginBottom: 10,
+        flexDirection: 'column',
+        backgroundColor: Styles.colors.white,
+        borderRadius:3,
+        elevation: 2
+    },
+    image: {
+        flex: 1,
+        resizeMode: 'cover',
+        borderWidth: 1,
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2
+    },
+    bottomContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+
+    },
+    line: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 3,
+    },
+    priceText: {
+        alignSelf: 'flex-end',
+        fontSize: 9,
+        color: Styles.colors.lighterGray,
+    },
+    hotelName: {
+        fontSize: 16,
+        color: Styles.colors.black,
+        fontWeight: '500'
+    },
+    stars: {
+        flexDirection: 'row',
+        alignItems: 'flex-start'
+    },
+    priceValue: {
+        fontSize: 13,
+        color: Styles.colors.yellow,
+        fontWeight: '500'
+    },
+}
+
+export { HotelsViewItem }
