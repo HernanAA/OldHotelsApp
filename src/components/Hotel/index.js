@@ -3,19 +3,20 @@ import { View, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { hotelListFetch, hotelSelect } from '../../actions/HotelActions';
-import HotelsView from './HotelsView'
+import HotelView from './HotelView'
 import Utils from '../../helpers/utils.js'
 
-class HotelList extends Component {
+class Hotel extends Component {
 
     componentWillMount() {
         this.props.hotelListFetch();
     }
 
     render() {
+        //alert(JSON.stringify(this.props.selectedHotel))
         return (
             <View style={styles.screen}>
-                <HotelsView {...this.props} />
+                {/* <HotelView {...this.props} /> */}
             </View>
         );
     }
@@ -30,8 +31,8 @@ const styles = {
 };
 
 const mapStateToProps = ({ hotels }) => {
-    return { list, listFetching } = hotels;
+    return { selectedHotel } = hotels;
 };
 
-export default connect(mapStateToProps, { hotelListFetch, hotelSelect })(HotelList);
+export default connect(mapStateToProps, { hotelListFetch, hotelSelect })(Hotel);
 

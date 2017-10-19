@@ -4,7 +4,7 @@ var api = {
 	//baseAddress: "http://192.168.1.209:3000/",
 	responseType: "?response-format=json/",
 	
-	getHoteslUrl:  function(){
+	getHotelListlUrl:  function(){
 		return this.baseAddress + "hotels/" 
 	},
 

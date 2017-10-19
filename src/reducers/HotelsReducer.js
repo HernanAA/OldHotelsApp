@@ -1,28 +1,38 @@
 import {
-  HOTELS_FETCH,
-  HOTELS_FETCH_SUCCESS,
-  HOTELS_FETCH_FAIL,
+  HOTEL_LIST_FETCH,
+  HOTEL_LIST_FETCH_SUCCESS,
+  HOTEL_LIST_FETCH_FAIL,
   HOTELS_FILTER_CHANGED,
-  HOTEL_DETAIL_FETCH,
-  HOTEL_DETAIL_FETCH_SUCCESS,
-  HOTEL_DETAIL_FETCH_FAIL
+  HOTEL_FETCH,
+  HOTEL_FETCH_SUCCESS,
+  HOTEL_FETCH_FAIL,
+  HOTEL_SELECT
 } from '../actions/types';
 
 const INITIAL_STATE = {
   list: [],
   error: '',
-  fetching: false,
-
+  listFetching: false,
+  hotelFetch: false,
+  selectedHotel: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case HOTELS_FETCH:
-      return { ...state, fetching: true };
-    case HOTELS_FETCH_SUCCESS:
-      return { ...state, ...action.payload, fetching: false };
-    case HOTELS_FETCH_FAIL:
-      return { ...state, ...action.payload, fetching: false };
+    case HOTEL_LIST_FETCH:
+      return { ...state, listFetching: true };
+    case HOTEL_LIST_FETCH_SUCCESS:
+      return { ...state, ...action.payload, listFetching: false };
+    case HOTEL_LIST_FETCH_FAIL:
+      return { ...state, ...action.payload, listFetching: false };
+    case HOTEL_FETCH:
+      return { ...state, hotelFetch: true };
+    case HOTEL_FETCH_SUCCESS:
+      return { ...state, ...action.payload, hotelFetch: false };
+    case HOTEL_FETCH_FAIL:
+      return { ...state, ...action.payload, hotelFetch: false };
+    case HOTEL_SELECT:
+    return { ...state, ...action.payload };
     default:
       return state;
   }

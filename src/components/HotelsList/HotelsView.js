@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, FlatList, Text, TextInput } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
+import { Actions } from 'react-native-router-flux';
 import Utils from '../../helpers/utils';
 import Styles from '../../styles'
 import { HotelsViewItem } from './HotelsViewItem'
@@ -10,13 +10,20 @@ import { Spinner, Header } from '../common';
 
 class HotelsView extends Component {
 
-    _renderItem({ item }) {
+    onHotelPress(item){
+        this.props.hotelSelect(item);
+        Actions.hotel();
+    }
+
+    renderItem({ item }) {
         return (
-            <HotelsViewItem item={item} />
+            <TouchableOpacity onPress={this.onHotelPress.bind(this, item)}>
+                <HotelsViewItem item={item} />
+            </TouchableOpacity>
         )
     }
 
-    _keyExtractor = (item, index) => item._id;
+    keyExtractor = (item, index) => item._id;
 
     onFilterChanged(text) {
         //this.props.filterChanged({ text });
@@ -25,7 +32,7 @@ class HotelsView extends Component {
     render() {
         var list = <Spinner size="small" />
 
-        if (!this.props.fetching) {
+        if (!this.props.listFetching) {
             if (this.props.error !== '') {
                 list = <Text style={styles.listContainer}> {this.props.error} </Text>
             }
@@ -34,8 +41,8 @@ class HotelsView extends Component {
                     <View style={styles.listContainer}>
                         <FlatList
                             data={this.props.list}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
+                            keyExtractor={this.keyExtractor}
+                            renderItem={this.renderItem.bind(this)}
                         />
                         <Text> {"Se listaron " + this.props.list.length + " hoteles."} </Text>
                     </View>
@@ -48,7 +55,7 @@ class HotelsView extends Component {
             <View style={styles.screen}>
                 <Header headerText="Lista de hoteles" />
                 <View style={styles.container}>
-                    <HotelsFilter onFilterChanged={this.onFilterChanged}/>
+                    <HotelsFilter onFilterChanged={this.onFilterChanged} />
                     {list}
                 </View>
             </View>

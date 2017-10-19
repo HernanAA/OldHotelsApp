@@ -5,11 +5,7 @@ import {
     Stack,
 } from 'react-native-router-flux';
 import HotelsList from './components/HotelsList';
-import {
-    Text,
-} from 'react-native';
-
-
+import Hotel from './components/Hotel';
 
 const RouterComponent = () => {
     return (
@@ -23,9 +19,15 @@ const RouterComponent = () => {
                     initial>
 
                     <Scene
-                        key="mainScreen"
+                        key="hotelsList"
                         component={HotelsList}
                         initial
+                        hideNavBar
+                    />
+
+                    <Scene
+                        key="hotel"
+                        component={Hotel}
                         hideNavBar
                     />
                 </Stack>
