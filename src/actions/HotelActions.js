@@ -46,12 +46,12 @@ export const hotelListFetch = () => {
     }
 };
 
-export const hotelFetch = (id) => {
-    return (dispatch) => {
+export const hotelFetch = () => {
+    return (dispatch, getState) => {
 
         dispatch({ type: HOTEL_FETCH });
 
-        var url = api.getHotelListlUrl() + id;
+        var url = api.getHotelListlUrl() + getState().hotels.selectedHotel._id;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -66,7 +66,7 @@ export const hotelFetch = (id) => {
             .then((rjson) => {
                 //alert(JSON.stringify(rjson,null,4))
                 if (rjson !== null) {
-                    dispatch({ type: HOTEL_FETCH_SUCCESS, payload: { selectedHotel: rjson.hotels } });
+                    dispatch({ type: HOTEL_FETCH_SUCCESS, payload: { selectedHotel: rjson.hotel } });
                 }
                 else {
                     console.log('not found any hotel.');

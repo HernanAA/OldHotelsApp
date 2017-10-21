@@ -2,19 +2,9 @@ import React, { Component } from 'react'
 import Styles from '../../styles'
 import { View, Image, Text } from 'react-native'
 import Utils from '../../helpers/utils';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Stars } from '../common';
 
 const HotelsViewItem = ({ item }) => {
-    var stars = [];
-    for (var i = 0; i < item.stars; i++) {
-        stars.push(<Icon
-            key={i} name='star'
-            size={12}
-            color={Styles.colors.yellow}
-            style={{ paddingRight: 4 }}
-        />);
-    }
-
     return (
         <View key={item._id} style={styles.container}>
             <Image source={{ uri: item.images[0] }} style={styles.image} />
@@ -25,7 +15,7 @@ const HotelsViewItem = ({ item }) => {
                 </View>
                 <View style={styles.line}>
                     <View style={styles.stars}>
-                        {stars}
+                        <Stars starsAmount={item.stars}/>
                     </View>
                     <Text style={styles.priceValue}>ARS {item.price.thousandDot()}</Text>
                 </View >
@@ -55,7 +45,6 @@ const styles = {
         justifyContent: 'center',
         paddingHorizontal: 10,
         paddingVertical: 5,
-
     },
     line: {
         flexDirection: 'row',

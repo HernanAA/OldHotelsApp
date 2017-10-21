@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   list: [],
   error: '',
   listFetching: false,
-  hotelFetch: false,
+  hotelFetching: false,
   selectedHotel: {},
 };
 
@@ -26,11 +26,11 @@ export default (state = INITIAL_STATE, action) => {
     case HOTEL_LIST_FETCH_FAIL:
       return { ...state, ...action.payload, listFetching: false };
     case HOTEL_FETCH:
-      return { ...state, hotelFetch: true };
+      return { ...state, hotelFetching: true };
     case HOTEL_FETCH_SUCCESS:
-      return { ...state, ...action.payload, hotelFetch: false };
+      return { ...state, ...action.payload, hotelFetching: false };
     case HOTEL_FETCH_FAIL:
-      return { ...state, ...action.payload, hotelFetch: false };
+      return { ...state, ...action.payload, hotelFetching: false };
     case HOTEL_SELECT:
     return { ...state, ...action.payload };
     default:

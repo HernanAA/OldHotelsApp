@@ -10,7 +10,7 @@ import { Spinner, Header } from '../common';
 
 class HotelsView extends Component {
 
-    onHotelPress(item){
+    onHotelPress(item) {
         this.props.hotelSelect(item);
         Actions.hotel();
     }
@@ -23,44 +23,49 @@ class HotelsView extends Component {
         )
     }
 
-    keyExtractor = (item, index) => item._id;
-
     onFilterChanged(text) {
         //this.props.filterChanged({ text });
     }
 
     render() {
-        var list = <Spinner size="small" />
+        const title = <Header headerText={"Lista de hoteles"} />;
 
-        if (!this.props.listFetching) {
-            if (this.props.error !== '') {
-                list = <Text style={styles.listContainer}> {this.props.error} </Text>
-            }
-            else {
-                list = (
+        if (this.props.listFetching) {
+            return (
+                <View style={styles.screen}>
+                    {title}
+                    <Spinner size="small" />
+                </View>
+            )
+        }
+
+        if (this.props.error !== '') {
+            return (
+                <View style={styles.screen}>
+                    {title}
+                    <View style={styles.errorContainer}>
+                        <Text> {this.props.error} </Text>
+                    </View>
+                </View>
+            )
+        }
+
+        return (
+            <View style={styles.screen}>
+                {title}
+                <View style={styles.container}>
+                    <HotelsFilter onFilterChanged={this.onFilterChanged} />
                     <View style={styles.listContainer}>
                         <FlatList
                             data={this.props.list}
-                            keyExtractor={this.keyExtractor}
+                            keyExtractor={(item, index) => item._id}
                             renderItem={this.renderItem.bind(this)}
                         />
                         <Text> {"Se listaron " + this.props.list.length + " hoteles."} </Text>
                     </View>
-                )
-            }
-        }
-
-
-        return (
-            <View style={styles.screen}>
-                <Header headerText="Lista de hoteles" />
-                <View style={styles.container}>
-                    <HotelsFilter onFilterChanged={this.onFilterChanged} />
-                    {list}
                 </View>
             </View>
         )
-
     }
 }
 
@@ -68,7 +73,7 @@ export default HotelsView;
 
 const styles = {
     screen: {
-        flex: 1
+        flex: 1,
     },
     container: {
         flex: 1,
@@ -107,6 +112,11 @@ const styles = {
     text: {
         fontSize: 18,
         color: Styles.colors.black,
-    }
-
+    },
+    errorContainer: {
+        flex:1,
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems: 'center'
+    },
 }
