@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { hotelListFetch, hotelSelect } from '../../actions/HotelActions';
+import { hotelListFetch, hotelFetch } from '../../actions/HotelActions';
 import HotelsView from './HotelsView'
 import Utils from '../../helpers/utils.js'
 
@@ -24,8 +24,7 @@ class HotelList extends Component {
 
 const styles = {
     screen: {
-        height: Utils.getWindowDimensions().height.value,
-        width: Utils.getWindowDimensions().width.value,
+        flex:1
     },
 };
 
@@ -33,5 +32,7 @@ const mapStateToProps = ({ hotels }) => {
     return { list, listFetching } = hotels;
 };
 
-export default connect(mapStateToProps, { hotelListFetch, hotelSelect })(HotelList);
+export default connect(mapStateToProps, 
+    { hotelListFetch, 
+        hotelFetch })(HotelList);
 

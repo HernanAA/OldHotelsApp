@@ -7,7 +7,7 @@ import { Stars } from '../common';
 const HotelsViewItem = ({ item }) => {
     return (
         <View key={item._id} style={styles.container}>
-            <Image source={{ uri: item.images[0] }} style={styles.image} />
+            <Image source={{ uri: item.image }} style={styles.image} />
             <View style={styles.bottomContainer}>
                 <View style={styles.line}>
                     <Text style={styles.hotelName}>{item.name} </Text>
@@ -15,7 +15,7 @@ const HotelsViewItem = ({ item }) => {
                 </View>
                 <View style={styles.line}>
                     <View style={styles.stars}>
-                        <Stars starsAmount={item.stars}/>
+                        <Stars starsAmount={item.stars} />
                     </View>
                     <Text style={styles.priceValue}>ARS {item.price.thousandDot()}</Text>
                 </View >
@@ -30,7 +30,7 @@ const styles = {
         marginBottom: 10,
         flexDirection: 'column',
         backgroundColor: Styles.colors.white,
-        borderRadius:3,
+        borderRadius: 3,
         elevation: 2
     },
     image: {
@@ -59,7 +59,8 @@ const styles = {
     hotelName: {
         fontSize: 16,
         color: Styles.colors.black,
-        fontWeight: '500'
+        fontWeight: '500',
+        maxWidth: Utils.getWindowDimensions().width.value * 0.7,
     },
     stars: {
         flexDirection: 'row',

@@ -7,11 +7,6 @@ import HotelView from './HotelView'
 import Utils from '../../helpers/utils.js'
 
 class Hotel extends Component {
-
-    componentWillMount() {
-        this.props.hotelFetch();
-    }
-
     render() {
         return (
             <View style={styles.screen}>
@@ -24,8 +19,7 @@ class Hotel extends Component {
 
 const styles = {
     screen: {
-        height: Utils.getWindowDimensions().height.value,
-        width: Utils.getWindowDimensions().width.value,
+        flex:1,
     },
 };
 
@@ -36,5 +30,5 @@ const mapStateToProps = ({ hotels }) => {
     return { hotel, hotelFetching, error}
 };
 
-export default connect(mapStateToProps, { hotelFetch })(Hotel);
+export default connect(mapStateToProps, )(Hotel);
 

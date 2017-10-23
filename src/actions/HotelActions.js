@@ -46,12 +46,12 @@ export const hotelListFetch = () => {
     }
 };
 
-export const hotelFetch = () => {
+export const hotelFetch = (id) => {
     return (dispatch, getState) => {
 
         dispatch({ type: HOTEL_FETCH });
 
-        var url = api.getHotelListlUrl() + getState().hotels.selectedHotel._id;
+        var url = api.getHotelListlUrl() + id;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -84,8 +84,8 @@ export const filterChanged = ({ text }) => {
     return (dispatch, getState) => {
         dispatch({ type: LOADING });
 
-        const newData = getState().prods.hotels.filter(function (item) {
-            const itemData = item.Imagen.substring(20, 40).toUpperCase()
+        const newData = getState().hotels.list.filter((item) => {
+            const itemData = item.name.toUpperCase()
             const textData = text.toUpperCase()
             return itemData.indexOf(textData) > -1
         })

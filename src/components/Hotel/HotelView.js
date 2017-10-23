@@ -25,12 +25,6 @@ class HotelView extends Component {
     render() {
         const hotel = this.props.hotel;
         const title = <Header headerText={this.props.hotelFetching ? '' : hotel.name} />
-        const LATITUDE = 48.42788111790396;
-        const LONGITUDE = -123.36475100000001;
-        const POINT = {
-            latitude: LATITUDE,
-            longitude: LONGITUDE,
-        };
 
         if (this.props.hotelFetching) {
             return (
@@ -52,37 +46,50 @@ class HotelView extends Component {
             )
         }
 
+        const POINT = { latitude, longitude } = hotel.detail.coordinates;
+
         return (
             <ScrollView style={styles.screen}>
-                <Header headerText={this.props.hotelFetching ? '' : hotel.name} />
+                <Header headerText={hotel.name} />
                 <View style={styles.container}>
                     <View>
                         <FlatList
                             horizontal
                             keyExtractor={(item, index) => index}
-                            data={hotel.images}
+                            data={hotel.detail.images}
                             renderItem={this.renderItem.bind(this)}
                         />
                     </View>
                     <View style={styles.dataContainer}>
-                        <View style={styles.line}>
-                            <Text style={styles.hotelName}>{hotel.name} </Text>
-                            <Text style={styles.priceText}>Precio Por Noche</Text>
-                        </View>
-                        <View style={styles.line}>
-                            <View style={styles.stars}>
-                                <Stars starsAmount={hotel.stars} />
+                        <View style={styles.nameContainer}>
+                            <View style={styles.line}>
+                                <Text style={styles.hotelName}>{hotel.name} </Text>
+                                <Text style={styles.priceText}>Precio Por Noche</Text>
                             </View>
-                            <Text style={styles.priceValue}>ARS {hotel.price.thousandDot()}</Text>
+                            <View style={styles.line}>
+                                <View style={styles.stars}>
+                                    <Stars starsAmount={hotel.stars} />
+                                </View>
+                                <Text style={styles.priceValue}>ARS {hotel.price.thousandDot()}</Text>
+                            </View >
                         </View >
                         <View style={styles.lineAddress}>
-                            <Icon name='room' size={18} color={Styles.colors.darkGray}
-                                style={{ paddingTop: 2 }} />
-                            <Text style={styles.addressText}>Rue de la Rambla 8989</Text>
+                            <Icon name='room' size={18}
+                                color={Styles.colors.darkGray}
+                                style={styles.addressIcon} />
+                            <Text style={styles.addressText}>{hotel.detail.address}</Text>
                         </View>
                     </View>
                     <View style={styles.mapStyle}>
                         <Map point={POINT} />
+                    </View>
+                    <View style={styles.descriptionContainer}>
+                        <View style={styles.descriptionHeaderContainer}>
+                            <Icon name='weekend' size={18} color={Styles.colors.darkGray}
+                                style={styles.descriptionIcon} />
+                            <Text style={styles.descriptionHeader}>Descripción</Text>
+                        </View>
+                        <Text style={styles.descriptionText}>{hotel.detail.description}</Text>
                     </View>
                 </View>
             </ScrollView>
@@ -98,8 +105,8 @@ const styles = {
         flex: 1
     },
     container: {
-        flex: 1,
-        paddingHorizontal: 10,
+        paddingHorizontal: 5,
+        height: 700,
     },
     navBarLeftButton: {
         backgroundColor: Styles.colors.transparent,
@@ -121,14 +128,15 @@ const styles = {
     dataContainer: {
         flexDirection: 'column',
         justifyContent: 'center',
+    },
+    nameContainer:{
         paddingHorizontal: 10,
-        paddingVertical: 0,
         backgroundColor: Styles.colors.white,
     },
     errorContainer: {
-        flex:1,
-        flexDirection:'column',
-        justifyContent:'center',
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     line: {
@@ -144,7 +152,8 @@ const styles = {
     hotelName: {
         fontSize: 16,
         color: Styles.colors.black,
-        fontWeight: '500'
+        fontWeight: '500',
+        maxWidth: Utils.getWindowDimensions().width.value * 0.7,
     },
     stars: {
         flexDirection: 'row',
@@ -159,14 +168,41 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         paddingTop: 3,
+        marginTop:10,
+        paddingHorizontal: 10,
+        backgroundColor: Styles.colors.white
+    },
+    addressIcon: {
+        paddingTop: 2,
+        marginLeft: -4,
     },
     addressText: {
-        fontSize: 16,
+        fontSize: 14,
         color: Styles.colors.darkGray,
         paddingBottom: 2,
     },
     mapStyle: {
-        height: 300,
+        height: 200,
+    },
+    descriptionContainer: {
+        backgroundColor: Styles.colors.white,
+        padding: 10,
+        marginTop:10,
+    },
+    descriptionIcon: {
+        paddingTop: 1,
+        paddingRight: 5
+    },
+    descriptionHeaderContainer: {
+        flexDirection: 'row'
+    },
+    descriptionHeader: {
+        fontSize: 14,
+        color: Styles.colors.black,
+        fontWeight: '700',
+    },
+    descriptionText: {
+        fontSize: 12,
     }
 
 }

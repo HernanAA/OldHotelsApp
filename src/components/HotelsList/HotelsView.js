@@ -11,7 +11,7 @@ import { Spinner, Header } from '../common';
 class HotelsView extends Component {
 
     onHotelPress(item) {
-        this.props.hotelSelect(item);
+        this.props.hotelFetch(item._id);
         Actions.hotel();
     }
 
@@ -24,7 +24,7 @@ class HotelsView extends Component {
     }
 
     onFilterChanged(text) {
-        //this.props.filterChanged({ text });
+        this.props.filterChanged({ text });
     }
 
     render() {
@@ -57,13 +57,18 @@ class HotelsView extends Component {
                     <HotelsFilter onFilterChanged={this.onFilterChanged} />
                     <View style={styles.listContainer}>
                         <FlatList
+                        style={{flex:1}}
                             data={this.props.list}
                             keyExtractor={(item, index) => item._id}
                             renderItem={this.renderItem.bind(this)}
                         />
-                        <Text> {"Se listaron " + this.props.list.length + " hoteles."} </Text>
                     </View>
+                    <Text style={styles.quantityText}>
+                        {"Se encontraron " + this.props.list.length + " hoteles."}
+                    </Text>
                 </View>
+
+
             </View>
         )
     }
@@ -73,7 +78,7 @@ export default HotelsView;
 
 const styles = {
     screen: {
-        flex: 1,
+        flex:1
     },
     container: {
         flex: 1,
@@ -109,14 +114,21 @@ const styles = {
     listContainer: {
         flex: 1,
     },
-    text: {
-        fontSize: 18,
-        color: Styles.colors.black,
-    },
     errorContainer: {
-        flex:1,
-        flexDirection:'column',
-        justifyContent:'center',
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center'
+    },
+    quantityText: {
+        flex:1,
+        backgroundColor: Styles.colors.lightestGray,
+        position: 'absolute',
+        bottom: 0,
+        left:10,
+        right:10,
+        fontSize: 10,
+        color: Styles.colors.black,
+        paddingHorizontal: 10,
     },
 }
