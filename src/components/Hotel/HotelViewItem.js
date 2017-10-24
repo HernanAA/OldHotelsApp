@@ -14,7 +14,7 @@ const HotelViewItem = ({ item }) => {
 const styles = {
     container: {
         height: 200,
-        width: Utils.getWindowDimensions().width.value * 0.45,        
+        width: Utils.getWindowDimensions().width * 0.45,        
         marginBottom: 10,
         flexDirection: 'column',
         backgroundColor: Styles.colors.black,

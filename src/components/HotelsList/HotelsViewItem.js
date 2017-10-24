@@ -60,7 +60,7 @@ const styles = {
         fontSize: 16,
         color: Styles.colors.black,
         fontWeight: '500',
-        maxWidth: Utils.getWindowDimensions().width.value * 0.7,
+        maxWidth: Utils.getWindowDimensions().width * 0.7,
     },
     stars: {
         flexDirection: 'row',

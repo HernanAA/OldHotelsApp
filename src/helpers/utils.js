@@ -7,8 +7,8 @@ var Utils = {
 	getWindowDimensions() {
 		if (this.dims === undefined) {
 			this.dims = {
-				width: { value: Dimensions.get('window').width },
-				height: { value: Dimensions.get('window').height }
+				width: Dimensions.get('window').width ,
+				height:  Dimensions.get('window').height 
 			}
 		}
 		return this.dims;

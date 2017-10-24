@@ -7,38 +7,27 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 
 var Map = ({ point }) => {
     const { width, height } = Utils.getWindowDimensions();
+    const ASPECT_RATIO = width / height;
+    var latitudeDelta = 0.0032;
+    var longitudeDelta = latitudeDelta * ASPECT_RATIO;
 
-    const ASPECT_RATIO = width.value / height.value;
-    const LATITUDE = 41.38195781399147;
-    const LONGITUDE = 2.1763343999999734;
-    const LATITUDE_DELTA = 0.0122;
-    const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-
-    const SAMPLE_REGION = {
-        latitude: LATITUDE,
-        longitude: LONGITUDE,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
-    };
+    const region = {
+        latitude,
+        longitude,
+        latitudeDelta,
+        longitudeDelta,
+    } = {...point, latitudeDelta, longitudeDelta};
 
     return (
-
         <MapView
             provider={PROVIDER_GOOGLE}
-            initialRegion={{
-                latitude: LATITUDE,
-                longitude: LONGITUDE,
-                latitudeDelta: LATITUDE_DELTA,
-                longitudeDelta: LONGITUDE_DELTA,
-            }}
+            initialRegion={region}
             style={StyleSheet.absoluteFillObject}
         >
-            <MapView.Marker coordinate={{latitude: LATITUDE,
-                longitude: LONGITUDE,}}>
+            <MapView.Marker coordinate={point}>
                 <Icon name='room' size={18} color={Styles.colors.darkGray} />
             </MapView.Marker>
         </MapView>
-
     );
 };
 
