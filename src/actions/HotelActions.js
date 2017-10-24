@@ -82,7 +82,7 @@ export const hotelFetch = (id) => {
 export const filterChanged = ({ text }) => {
 
     return (dispatch, getState) => {
-        dispatch({ type: LOADING });
+        dispatch({ type: HOTEL_LIST_FETCH });
 
         const newData = getState().hotels.list.filter((item) => {
             const itemData = item.name.toUpperCase()
@@ -90,7 +90,7 @@ export const filterChanged = ({ text }) => {
             return itemData.indexOf(textData) > -1
         })
 
-        dispatch({ type: FILTER_CHANGED, payload: { filter: text, filteredHotels: newData } });
+        dispatch({ type: HOTELS_FILTER_CHANGED, payload: { filterText: text, filterdList: newData } });
     }
 }
 

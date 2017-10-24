@@ -54,17 +54,17 @@ class HotelsView extends Component {
             <View style={styles.screen}>
                 {title}
                 <View style={styles.container}>
-                    <HotelsFilter onFilterChanged={this.onFilterChanged} />
+                    <HotelsFilter onFilterChanged={this.onFilterChanged.bind(this)} />
                     <View style={styles.listContainer}>
                         <FlatList
                         style={{flex:1}}
-                            data={this.props.list}
+                            data={this.props.filterdList}
                             keyExtractor={(item, index) => item._id}
                             renderItem={this.renderItem.bind(this)}
                         />
                     </View>
                     <Text style={styles.quantityText}>
-                        {"Se encontraron " + this.props.list.length + " hoteles."}
+                        {"Se encontraron " + this.props.filterdList.length + " hoteles."}
                     </Text>
                 </View>
 

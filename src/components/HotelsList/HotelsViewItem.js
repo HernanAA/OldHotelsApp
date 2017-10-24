@@ -19,7 +19,7 @@ const HotelsViewItem = ({ item }) => {
                     </View>
                     <Text style={styles.priceValue}>ARS {item.price.thousandDot()}</Text>
                 </View >
-            </View>
+            </View> 
         </View >
     )
 }

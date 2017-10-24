@@ -11,10 +11,12 @@ import {
 
 const INITIAL_STATE = {
   list: [],
+  filterdList: [],
   error: '',
   listFetching: false,
   hotelFetching: false,
   selectedHotel: {},
+  filterText:'',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
     case HOTEL_LIST_FETCH:
       return { ...state, listFetching: true };
     case HOTEL_LIST_FETCH_SUCCESS:
-      return { ...state, ...action.payload, listFetching: false };
+      return { ...state, ...action.payload, filterdList: action.payload.list, listFetching: false };
     case HOTEL_LIST_FETCH_FAIL:
       return { ...state, ...action.payload, listFetching: false };
     case HOTEL_FETCH:
@@ -32,7 +34,9 @@ export default (state = INITIAL_STATE, action) => {
     case HOTEL_FETCH_FAIL:
       return { ...state, ...action.payload, hotelFetching: false };
     case HOTEL_SELECT:
-    return { ...state, ...action.payload };
+      return { ...state, ...action.payload };
+    case HOTELS_FILTER_CHANGED:
+      return { ...state, ...action.payload, listFetching: false };
     default:
       return state;
   }
