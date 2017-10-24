@@ -27,16 +27,14 @@ export const hotelListFetch = () => {
             }
         })
             .then((response) => {
-                //alert(JSON.stringify(response))
                 return response.json()
             })
             .then((rjson) => {
-                //alert(JSON.stringify(rjson,null,4))
                 if (rjson !== null) {
                     dispatch({ type: HOTEL_LIST_FETCH_SUCCESS, payload: { list: rjson.hotels } });
                 }
                 else {
-                    console.log('not found any hotel.');
+                    dispatch({ type: HOTEL_LIST_FETCH_SUCCESS, payload: { list: [] } });
                 }
             })
             .catch((error) => {
@@ -60,16 +58,14 @@ export const hotelFetch = (id) => {
             }
         })
             .then((response) => {
-                //alert(JSON.stringify(response))
                 return response.json()
             })
             .then((rjson) => {
-                //alert(JSON.stringify(rjson,null,4))
                 if (rjson !== null) {
                     dispatch({ type: HOTEL_FETCH_SUCCESS, payload: { selectedHotel: rjson.hotel } });
                 }
                 else {
-                    console.log('not found any hotel.');
+                    dispatch({ type: HOTEL_FETCH_SUCCESS, payload: { selectedHotel: {} } });
                 }
             })
             .catch((error) => {
@@ -80,7 +76,6 @@ export const hotelFetch = (id) => {
 };
 
 export const filterChanged = ({ text }) => {
-
     return (dispatch, getState) => {
         dispatch({ type: HOTEL_LIST_FETCH });
 
@@ -94,9 +89,9 @@ export const filterChanged = ({ text }) => {
     }
 }
 
-export const hotelSelect = ( selectedHotel ) => {
-    return({ 
-        type: HOTEL_SELECT, 
-        payload: {selectedHotel} 
+export const hotelSelect = (selectedHotel) => {
+    return ({
+        type: HOTEL_SELECT,
+        payload: { selectedHotel }
     });
 }
