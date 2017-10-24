@@ -31,13 +31,6 @@ var Map = ({ point }) => {
     );
 };
 
-const styles = {
-    stars: {
-        flexDirection: 'row',
-        alignItems: 'flex-start'
-    },
-};
-
 export { Map };
 
 

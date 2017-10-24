@@ -8,7 +8,6 @@ import { HotelViewItem } from './HotelViewItem'
 import { Spinner, Header } from '../common';
 import { Stars, Map } from '../common';
 
-
 class HotelView extends Component {
 
     onHotelPress(item) {
@@ -108,23 +107,6 @@ const styles = {
         paddingHorizontal: 5,
         height: 700,
     },
-    navBarLeftButton: {
-        backgroundColor: Styles.colors.transparent,
-        height: 30,
-        width: 30,
-        marginTop: 10,
-        marginRight: 20,
-        marginLeft: 20,
-    },
-    icon: {
-        width: 100,
-        height: 100,
-        alignSelf: 'center',
-    },
-    text: {
-        fontSize: 18,
-        color: Styles.colors.black,
-    },
     dataContainer: {
         flexDirection: 'column',
         justifyContent: 'center',
@@ -204,5 +186,4 @@ const styles = {
     descriptionText: {
         fontSize: 12,
     }
-
 }
