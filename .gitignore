@@ -55,7 +55,6 @@ buck-out/
 # Custom 
 .vscode
 .watchmanconfig
-ios
 __tests__
 .gitattributes
 _babelrc
