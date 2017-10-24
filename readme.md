@@ -6,6 +6,11 @@ npm install
 react-native link
 
 --------------------
-Maps
-sudo gem install cocoapods
-https://github.com/airbnb/react-native-maps/blob/master/docs/installation.md
+Componente Maps
+--------------------
+npm install --save react-native-maps
+react-native link react-native-maps
+cd ios
+pod install
+cd ..
+react-native run-ios
