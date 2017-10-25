@@ -41,7 +41,8 @@ Imágenes
 ![](https://github.com/HernanAA/HotelsApp/blob/master/Images/Pantalla1.1.PNG)           ![](https://github.com/HernanAA/HotelsApp/blob/master/Images/Pantalla2.PNG)
 
 
-![](https://github.com/HernanAA/HotelsApp/blob/master/Images/Pantalla1.1 ios.png)           ![](https://github.com/HernanAA/HotelsApp/blob/master/Images/Pantalla2 ios.png)
+![](https://github.com/HernanAA/HotelsApp/blob/master/Images/Pantalla1.1ios.png)
+![](https://github.com/HernanAA/HotelsApp/blob/master/Images/Pantalla2ios.png)
 
 
 
