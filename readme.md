@@ -7,9 +7,13 @@ Aplicación realizada con **react-native 0.48.3**. El objetivo es evidenciar los
 Instalación
 -------------
 Dentro de pantalla donde se desea realizar la instalación, ejecutar los siguientes comandos por consola:
+
 **git clone https://github.com/HernanAA/HotelsApp.git**
+
 **cd HotelsApp**
+
 **npm install**
+
 **react-native link**
 
 
