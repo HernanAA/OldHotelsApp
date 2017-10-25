@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
-import { Actions } from 'react-native-router-flux';
+import { View } from 'react-native'
 import { connect } from 'react-redux';
-import { hotelFetch } from '../../actions/HotelActions';
 import HotelView from './HotelView'
-import Utils from '../../helpers/utils.js'
 
 class Hotel extends Component {
     render() {

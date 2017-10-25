@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, FlatList, Text, TextInput } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, TouchableOpacity, FlatList, Text } from 'react-native'
 import { Actions } from 'react-native-router-flux';
-import Utils from '../../helpers/utils';
 import Styles from '../../styles'
 import { HotelsViewItem } from './HotelsViewItem'
 import { HotelsFilter } from './HotelsFilter'
@@ -83,33 +81,6 @@ const styles = {
     container: {
         flex: 1,
         paddingHorizontal: 10,
-    },
-    searchContainer: {
-        backgroundColor: Styles.colors.blue,
-        height: 63,
-        flexDirection: 'row',
-        paddingLeft: 20,
-    },
-    searchInputText: {
-        marginLeft: 140,
-        color: 'black',
-        fontSize: 18,
-        alignSelf: 'center',
-        width: 300,
-        backgroundColor: 'white'
-    },
-    navBarLeftButton: {
-        backgroundColor: Styles.colors.transparent,
-        height: 30,
-        width: 30,
-        marginTop: 10,
-        marginRight: 20,
-        marginLeft: 20,
-    },
-    icon: {
-        width: 100,
-        height: 100,
-        alignSelf: 'center',
     },
     listContainer: {
         flex: 1,

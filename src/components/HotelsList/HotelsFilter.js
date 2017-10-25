@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Styles from '../../styles'
 import { View, TextInput } from 'react-native'
-import Utils from '../../helpers/utils';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const HotelsFilter = (props) => {
