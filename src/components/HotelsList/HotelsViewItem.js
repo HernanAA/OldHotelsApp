@@ -7,7 +7,10 @@ import { Stars } from '../common';
 const HotelsViewItem = ({ item }) => {
     return (
         <View key={item._id} style={styles.container}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <View style={styles.imageContainer}>
+                <Image source={{ uri: item.image }} style={styles.image} />
+            </View >
+
             <View style={styles.bottomContainer}>
                 <View style={styles.line}>
                     <Text style={styles.hotelName}>{item.name} </Text>
@@ -19,7 +22,7 @@ const HotelsViewItem = ({ item }) => {
                     </View>
                     <Text style={styles.priceValue}>ARS {item.price.thousandDot()}</Text>
                 </View >
-            </View> 
+            </View>
         </View >
     )
 }
@@ -33,12 +36,18 @@ const styles = {
         borderRadius: 3,
         elevation: 2
     },
+    imageContainer:{
+        flex:1,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        borderColor: Styles.colors.lighterGray,
+        borderWidth: 1,
+        overflow:'hidden'
+    },
     image: {
         flex: 1,
         resizeMode: 'cover',
-        borderWidth: 1,
-        borderTopLeftRadius: 2,
-        borderTopRightRadius: 2
+
     },
     bottomContainer: {
         flexDirection: 'column',

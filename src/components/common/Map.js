@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Styles from '../../styles'
 import Utils from '../../helpers/utils';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+
 
 var Map = ({ point }) => {
     const { width, height } = Utils.getWindowDimensions();
@@ -17,10 +18,10 @@ var Map = ({ point }) => {
         latitudeDelta,
         longitudeDelta,
     } = {...point, latitudeDelta, longitudeDelta};
-
+    
     return (
         <MapView
-            provider={PROVIDER_GOOGLE}
+            provider={Platform.OS === 'ios' ? null : PROVIDER_GOOGLE}
             initialRegion={region}
             style={StyleSheet.absoluteFillObject}
         >
