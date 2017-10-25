@@ -38,6 +38,10 @@ Además, para iOS se deberán correr los siguientes comandos adicionales para po
 > - react-native run-ios
 > - npm install --save react-native-maps.
 
+
+> **Servicios Api:**
+> - Los servicios api que se consumen son de público accesso a través de internet.
+
 ----------
 Imágenes
 -------------
