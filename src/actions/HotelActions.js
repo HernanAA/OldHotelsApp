@@ -36,7 +36,7 @@ const loadHotelListSuccess = (dispatch, jsonResponse) => {
 const loadHotelListFail = (dispatch, error) => {
     dispatch({
         type: HOTEL_LIST_FETCH_FAIL,
-        payload: { list: [], error }
+        payload: { list: [], ...error }
     });
 };
 
@@ -63,7 +63,7 @@ const loadHotelSuccess = (dispatch, rjson) => {
 const loadHotelFail = (dispatch, error) => {
     dispatch({
         type: HOTEL_FETCH_FAIL,
-        payload: { selectedHotel: {}, error }
+        payload: { selectedHotel: {}, ...error }
     });
 };
 
