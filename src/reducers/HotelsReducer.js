@@ -8,6 +8,7 @@ import {
   HOTEL_FETCH_FAIL,
   HOTEL_SELECT
 } from '../actions/types';
+import * as ReduxPersistConstants from 'redux-persist/constants';
 
 const INITIAL_STATE = {
   list: [],
@@ -19,7 +20,20 @@ const INITIAL_STATE = {
   filterText:'',
 };
 
+function persistedStateIsInvalid(state) {
+  return Object.keys(state).length === 0;
+}
+
 export default (state = INITIAL_STATE, action) => {
+  if (action === ReduxPersistConstants.REHYDRATE) {
+    if (persistedStateIsInvalid(action.payload)) {
+      console.log('her- state')
+      return {...state};
+    } else {
+      console.log('her- persistedState:', action.playload)
+      return {...action.payload};
+    }
+  }
   switch (action.type) {
     case HOTEL_LIST_FETCH:
       return { ...state, listFetching: true };

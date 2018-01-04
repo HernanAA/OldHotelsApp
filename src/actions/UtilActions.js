@@ -10,6 +10,7 @@ export const genericListFetch = (actionType, url, onSuccess, onFail, description
             }
         })
         .then((response) => {
+            //console.log(JSON.stringify(response, null,4))
             return response.json()
         })
         .then((rjson) => {
