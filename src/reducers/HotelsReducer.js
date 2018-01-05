@@ -17,7 +17,7 @@ const INITIAL_STATE = {
   listFetching: false,
   hotelFetching: false,
   selectedHotel: {},
-  filterText:'',
+  filterText: '',
 };
 
 function persistedStateIsInvalid(state) {
@@ -25,13 +25,19 @@ function persistedStateIsInvalid(state) {
 }
 
 export default (state = INITIAL_STATE, action) => {
-  if (action === ReduxPersistConstants.REHYDRATE) {
+  if (action.type === ReduxPersistConstants.REHYDRATE) {
     if (persistedStateIsInvalid(action.payload)) {
-      console.log('her- state')
-      return {...state};
+      console.log('her------------------------- state')
+      return { ...state };
     } else {
-      console.log('her- persistedState:', action.playload)
-      return {...action.payload};
+      console.log('her------------------------- persistedState:', action.payload.hotels)
+      if (action.payload.hotels.error === '') {
+        return { ...action.payload.hotels };
+      }
+      else {
+        console.log('Se ignora el store porque al guardarse tenia cargado un error')
+        return { ...state };
+      }
     }
   }
   switch (action.type) {

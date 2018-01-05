@@ -20,8 +20,8 @@ const INITIAL_STATE = {
 var middlewares = compose(applyMiddleware(thunk), autoRehydrate());
 
 export default function configureStore() {
-  const store = createStore(reducers, undefined, middlewares);
-  persistStore(store, {storage: AsyncStorage});
+  const store = createStore(reducers, INITIAL_STATE, middlewares);
+  persistStore(store, {storage: AsyncStorage}, ()=> {alert('persist Complete')});
   return store;
 }
 
