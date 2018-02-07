@@ -54,9 +54,7 @@ Imágenes
 
 
 
-
-
-[![Alt text](https://img.youtube.com/vi/https://youtu.be/bCMBb20SKMo/0.jpg)](https://www.youtube.com/watch?v=https://youtu.be/bCMBb20SKMo)
+![](https://user-images.githubusercontent.com/7015591/35898945-5b494ed8-0ba8-11e8-94d4-6e9b9369eeb3.gif)
 
 
 
